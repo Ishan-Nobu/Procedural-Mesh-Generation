@@ -2,8 +2,10 @@ using UnityEngine;
 
 public static class MeshGenerator 
 {
-    public static MeshData GenerateTerrainMesh(float[,] noiseMap, float heightMultiplier, AnimationCurve heightCurve, int levelOfDetail)
-    {
+    public static MeshData GenerateTerrainMesh(float[,] noiseMap, float heightMultiplier, AnimationCurve _heightCurve, int levelOfDetail)
+    {   
+        AnimationCurve heightCurve = new AnimationCurve(_heightCurve.keys);
+
         int width = noiseMap.GetLength(0);
         int height = noiseMap.GetLength(1);
 
