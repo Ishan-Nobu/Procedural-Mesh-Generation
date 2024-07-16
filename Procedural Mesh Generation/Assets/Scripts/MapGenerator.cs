@@ -2,7 +2,6 @@ using UnityEngine;
 using System;
 using System.Threading;
 using System.Collections.Generic;
-using UnityEditor;
 
 public class MapGenerator : MonoBehaviour 
 {
@@ -33,7 +32,7 @@ public class MapGenerator : MonoBehaviour
 	}
 	void OnTextureValuesUpdated()
 	{
-		textureData.ApplyMaterial(terrainMaterial);
+		textureData.ApplyToMaterial(terrainMaterial);
 	}
 	public int mapChunkSize
 	{
@@ -152,6 +151,8 @@ public class MapGenerator : MonoBehaviour
 				}
 			}
 		}
+		textureData.UpdateMeshHeights(terrainMaterial, terrainData.minHeight, terrainData.maxHeight);
+
 		return new MapData (noiseMap);
 	}
 

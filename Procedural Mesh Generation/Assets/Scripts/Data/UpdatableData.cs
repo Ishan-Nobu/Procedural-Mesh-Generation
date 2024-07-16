@@ -1,4 +1,5 @@
 using System;
+using UnityEditor;
 using UnityEngine;
 
 public class UpdatableData : ScriptableObject
@@ -10,12 +11,13 @@ public class UpdatableData : ScriptableObject
     {
         if(autoUpdate)
         {
-            NotifyWhenValuesAreUpdated();
+            EditorApplication.update += NotifyWhenValuesAreUpdated;
         }
     }
 
     public void NotifyWhenValuesAreUpdated()
-    {
+    {   
+        EditorApplication.update -= NotifyWhenValuesAreUpdated;
         if(OnValuesUpdated != null)
         {
             OnValuesUpdated();
